@@ -1,0 +1,13 @@
+.container
+{
+  width: 100%;
+  text-align: center;
+}
+.btn
+{
+  margin: 5px;
+  min-width: 200px;
+  padding: 10px 0;
+  font-size: 20px;
+  cursor: pointer;
+}
