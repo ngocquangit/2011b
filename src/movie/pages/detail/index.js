@@ -12,6 +12,7 @@ const DetailComponent = ()=>{
     const[loading,setLoading] = useState(false);
     const[moviesDetail,SetMoviesDetail]= useState({});
     const [isOpen, setOpen] = useState(false)
+    
     useEffect(()=>{
         const getData=  async ()=>{
             setLoading(true);
@@ -43,10 +44,15 @@ const DetailComponent = ()=>{
                     <p> {moviesDetail.overview}</p>
                     <p> Đánh giá:  {moviesDetail.vote_average}</p>
                     <p> Lượt đánh giá:  {moviesDetail.vote_count}</p>
-                        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={helpers.IsEmptyObject(moviesDetail.videos.results[0]) ? moviesDetail.videos.results[0].key : 's4R26OnXqFE' } onClose={() => setOpen(false)} />
+                    {moviesDetail.videos.hasOwnProperty('results')
+                    &&
+                    <>
+                        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={moviesDetail.videos.results[0].key} onClose={() => setOpen(false)} />
                         
                         <Button type="primary" onClick={()=> {setOpen(true)
                         console.log(moviesDetail.videos.results[0].key);}}>Xem demo</Button >
+                    </>
+                    }
                 </Col>
                 <Col span={8}>
                     {moviesDetail.images.backdrops.map((item, index)=>( 
